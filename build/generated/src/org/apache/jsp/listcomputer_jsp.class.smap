@@ -1,0 +1,18 @@
+SMAP
+listcomputer_jsp.java
+JSP
+*S JSP
+*F
++ 0 listcomputer.jsp
+listcomputer.jsp
+*L
+5,27:46
+32,4:74
+35,2:78
+37,6:80,3
+43:98
+44:99,5
+45,4:104
+48,4:108
+51,6:112
+*E
