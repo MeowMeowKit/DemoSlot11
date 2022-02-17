@@ -11,8 +11,10 @@ import fu.ex.utils.RepoConnector;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.naming.NamingException;
 
 /**
  *
@@ -132,5 +134,32 @@ public class ComputerDAO {
             closeConnection();
         }
         return result;
+    }
+
+    public boolean deleteComputer(String cid) throws Exception {
+        try {
+            String sql = "DELETE FROM ComputerTBL WHERE ComputerID=?";
+            RepoConnector repo = new RepoConnector();
+            conn = repo.connectDatabase();
+            preStm = conn.prepareStatement(sql);
+            System.out.println(cid);
+            if (conn != null) {
+                preStm = conn.prepareStatement(sql);
+                preStm.setString(1, cid);
+                preStm.executeUpdate();
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (preStm != null) {
+                preStm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return false;
     }
 }

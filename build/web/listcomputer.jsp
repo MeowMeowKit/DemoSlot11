@@ -33,23 +33,25 @@
                     lstComputers = (ArrayList<ComputerDTO>) request.getAttribute("listComputers");
                     if (lstComputers != null) {
                         for (ComputerDTO dt : lstComputers) {%>
-                            <tr>
-                                <td><%=dt.getId()%></td>
-                                <td><%=dt.getCpu()%></td>
-                                <td><%=dt.getVga()%></td>
-                                <td><%=dt.getHardDisk()%></td>
-                                <td><%=dt.getRam()%></td>
-                                <td><%=dt.getMonitor()%></td>
+                <tr>
+                    <td><%=dt.getId()%></td>
+                    <td><%=dt.getCpu()%></td>
+                    <td><%=dt.getVga()%></td>
+                    <td><%=dt.getHardDisk()%></td>
+                    <td><%=dt.getRam()%></td>
+                    <td><%=dt.getMonitor()%></td>
 
-                                <td><%=dt.getRoom().getName()%> - <%=dt.getRoom().getBuilding()%></td>
-                                <td> Edit </td>
-                                <td>Delete</a></td>
-                            </tr>
-                    <% }
+                    <td><%=dt.getRoom().getName()%> - <%=dt.getRoom().getBuilding()%></td>
+                    <td> Edit </td>
+                    <td><a href="DeleteServlet?pid=<%=dt.getId()%>"
+                           onclick="return confirm('Delete entry?')">Delete</a></td>
+                </tr>
+                <% }
                     } else {
 
                     }%>
             </tbody>
         </table>
+        <br /> <a href="CreateFormServlet">Add new computer</a>
     </body>
 </html>

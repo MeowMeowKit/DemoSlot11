@@ -1,49 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fu.ex.servlets;
 
-import fu.ex.daos.RoomDAO;
-import fu.ex.dtos.RoomDTO;
+import fu.ex.daos.ComputerDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author LCCuong
- */
-public class CreateFromServlet extends HttpServlet {
+@WebServlet(name = "DeleteServlet", urlPatterns = {"/DeleteServlet"})
+public class DeleteServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private static final String SUCCESS = "LoadListComputerServlet";
+    private static final String ERROR = "error.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = ERROR;
         try {
-            RoomDAO dao = new RoomDAO();
-           
-           List<RoomDTO> listRoom = dao.getAllRooms();
-           
-           request.setAttribute("listRooms", listRoom);
-        } catch(Exception e){
-            e.printStackTrace();
-            log("ERROR at CreateFromServlet: " + e.getMessage());
-        }finally{
-            request.getRequestDispatcher("computerform.jsp").forward(request, response);
+            String id = request.getParameter("pid");
+            ComputerDAO dao = new ComputerDAO();
+            if (dao.deleteComputer(id)) {
+                url = SUCCESS;
+            } else {
+                request.setAttribute("errMessage", "Delete Fail!");
+            }
+        }  catch (Exception e) {
+            log("ERROR at DeleteServlet: " + e.getMessage());
+        }   finally{
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

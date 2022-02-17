@@ -5,16 +5,16 @@
         <servlet-class>fu.ex.servlets.LoadListComputerServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CreateFromServlet</servlet-name>
-        <servlet-class>fu.ex.servlets.CreateFromServlet</servlet-class>
+        <servlet-name>CreateFormServlet</servlet-name>
+        <servlet-class>fu.ex.servlets.CreateFormServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoadListComputerServlet</servlet-name>
         <url-pattern>/LoadListComputerServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CreateFromServlet</servlet-name>
-        <url-pattern>/CreateFromServlet</url-pattern>
+        <servlet-name>CreateFormServlet</servlet-name>
+        <url-pattern>/CreateFormServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

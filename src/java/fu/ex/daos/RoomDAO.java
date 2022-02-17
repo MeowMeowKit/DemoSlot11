@@ -55,7 +55,6 @@ public class RoomDAO implements Serializable {
                 String building = rs.getString("building");
                 int floor = rs.getInt("FloorNumber");
                 result = new RoomDTO(id, name, building, floor);
-
             }
         } finally {
             closeConnection();
